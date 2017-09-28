@@ -26,8 +26,6 @@ public class GameLoop implements KeyListener, Runnable {
         isRunning = true;
         runner = new Thread(this);
         runner.start();
-
-        world.generateAliens();
     }
 
     public void setScorePanel(ScorePanel scorePanel) {

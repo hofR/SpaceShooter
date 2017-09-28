@@ -79,6 +79,8 @@ public class GameWorld extends JPanel {
             System.out.println("Fehler! Alien-Image nicht gefunden");
         }
 
+        AlienFactory alienFactory = new AlienFactory();
+        alienFactory.generateAliens(aliens);
         gameTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
@@ -156,28 +158,6 @@ public class GameWorld extends JPanel {
 
         //Instances Missile on ship position
         missiles.add(new Missile(ship.getX() + 50, ship.getY()));
-    }
-
-    public void generateAliens() {
-        //generates a number between 1 and 10
-        int random = 1 + r.nextInt(10);
-
-        //After a period of 1 to 10 seconds method calculateAlienPosition() is executed (period)
-        //Starts 2 seconds after the start of the program execution (delay)
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                calculateAlienPosition();
-            }
-        }, 2 * 1000, random * 1000);
-    }
-
-    // method generates a random number for the alien Y-position
-    private void calculateAlienPosition() {
-        // random.nextInt(max - min + 1) + min
-        int random = r.nextInt(10 - 1 + 1) + 1;
-
-        aliens.add(new Alien(850, random * 50));
     }
 
     private void checkCollision() {
