@@ -2,9 +2,9 @@ package at.fhj.sodevel.shooter.model;
 
 public interface Collidable {
 
-    public boolean isCollided();
+    boolean isCollided();
 
-    public boolean collide(Collidable e);
+    boolean collide(Collidable e);
 
-    public BoundingBox getBoundingBox();
+    BoundingBox getBoundingBox();
 }

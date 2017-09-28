@@ -10,9 +10,10 @@ public class ScorePanel extends JPanel {
     private JLabel scoreLabel;
     private JLabel playerLabel;
     private JLabel liveLabel;
+    private JLabel timeLabel;
 
     public ScorePanel() {
-        this.setLayout(new BorderLayout());
+        this.setLayout(new FlowLayout());
         this.setForeground(Color.white);
         this.setBackground(Color.black);
         this.setPreferredSize(new Dimension(800, 50));
@@ -25,17 +26,21 @@ public class ScorePanel extends JPanel {
         configureJLabel(this.playerLabel, 200);
 
         this.liveLabel = new JLabel("", SwingConstants.CENTER);
-        configureJLabel(this.liveLabel, 400);
+        configureJLabel(this.liveLabel, 200);
+
+        this.timeLabel = new JLabel("0:0", SwingConstants.RIGHT);
+        configureJLabel(this.timeLabel, 100);
 
         this.scoreLabel = new JLabel("", SwingConstants.RIGHT);
         configureJLabel(this.scoreLabel, 200);
 
-        this.add(playerLabel, BorderLayout.WEST);
-        this.add(scoreLabel, BorderLayout.EAST);
-        this.add(liveLabel, BorderLayout.CENTER);
+        this.add(playerLabel, FlowLayout.LEFT);
+        this.add(liveLabel);
+        this.add(scoreLabel);
+        this.add(timeLabel);
     }
 
-    public JLabel getScoreLabel() {
+    JLabel getScoreLabel() {
         return scoreLabel;
     }
 
@@ -45,6 +50,10 @@ public class ScorePanel extends JPanel {
 
     public JLabel getLiveLabel() {
         return liveLabel;
+    }
+
+    public JLabel getTimeLabel() {
+        return timeLabel;
     }
 
     //Method sets font color, margin and size for the class' JLabels

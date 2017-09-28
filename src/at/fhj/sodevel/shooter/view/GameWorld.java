@@ -20,6 +20,8 @@ public class GameWorld extends JPanel {
     private ArrayList<Alien> aliens;
     private ScorePanel scorePanel;
 
+    private long gameTime = 0;
+    private Timer gameTimer = new Timer();
     private Timer timer = new Timer();
     private Random r = new Random();
 
@@ -76,6 +78,27 @@ public class GameWorld extends JPanel {
         } catch (IOException ex) {
             System.out.println("Fehler! Alien-Image nicht gefunden");
         }
+
+        gameTimer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                UpdateGameTime();
+            }
+        }, 1000, 1000);
+    }
+
+    private void UpdateGameTime() {
+        long minutes = 0;
+        long seconds = 0;
+
+        gameTime = gameTime + 1;
+        if(gameTime > 60) {
+            minutes = gameTime/60;
+            seconds = gameTime%60;
+        } else {
+            seconds = gameTime;
+        }
+        scorePanel.getTimeLabel().setText(minutes + " : " + seconds);
     }
 
     public SpaceShip getShip() {
